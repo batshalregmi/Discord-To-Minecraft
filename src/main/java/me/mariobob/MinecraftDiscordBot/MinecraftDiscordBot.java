@@ -34,21 +34,23 @@ public final class MinecraftDiscordBot extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        System.out.println("Plugin Is Ready!");
         String discordToken = getConfig().getString("DISCORD_TOKEN");
         this.dBot = JDABuilder.createDefault(discordToken)
                 .enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES)
                 .build();
+        getLogger().info("Initializing Minecraft events");
         getServer().getPluginManager().registerEvents(new PlayerJoinServerEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerLeaveServerEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerChatEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerGameDeathEvent(this), this);
 // TODO: Fix with nms?        getServer().getPluginManager().registerEvents(new PlayerAchievementGetEvent(this), this);
+        getLogger().info("Initializing Discord Bot");
         setBotStatus();
         this.dBot.addEventListener(new ReadyEvent(this));
         this.dBot.addEventListener(new MessageSendEvent(this));
         EnumSet<Message.MentionType> deny = EnumSet.of(Message.MentionType.EVERYONE, Message.MentionType.HERE);
         MessageAction.setDefaultMentions(EnumSet.complementOf(deny)); // disables @everyone and @here messages from mc to discord
+        getLogger().info("Plugin is fully loaded");
     }
 
     @Override
