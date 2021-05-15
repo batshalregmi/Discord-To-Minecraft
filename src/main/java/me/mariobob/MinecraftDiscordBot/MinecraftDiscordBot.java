@@ -5,7 +5,10 @@ import lombok.Setter;
 import lombok.SneakyThrows;
 import me.mariobob.MinecraftDiscordBot.DiscordEvents.MessageSendEvent;
 import me.mariobob.MinecraftDiscordBot.DiscordEvents.ReadyEvent;
-import me.mariobob.MinecraftDiscordBot.MinecraftEvents.*;
+import me.mariobob.MinecraftDiscordBot.MinecraftEvents.PlayerChatEvent;
+import me.mariobob.MinecraftDiscordBot.MinecraftEvents.PlayerGameDeathEvent;
+import me.mariobob.MinecraftDiscordBot.MinecraftEvents.PlayerJoinServerEvent;
+import me.mariobob.MinecraftDiscordBot.MinecraftEvents.PlayerLeaveServerEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -13,6 +16,7 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,10 +25,10 @@ import java.util.List;
 
 public final class MinecraftDiscordBot extends JavaPlugin {
     @Getter
-    public JDA discordBot;
+    public JDA dBot;
 
     @Getter @Setter
-    public Guild discordServer;
+    public Guild dServer;
 
     @SneakyThrows
     @Override
@@ -32,7 +36,7 @@ public final class MinecraftDiscordBot extends JavaPlugin {
         saveDefaultConfig();
         System.out.println("Plugin Is Ready!");
         String discordToken = getConfig().getString("DISCORD_TOKEN");
-        this.discordBot = JDABuilder.createDefault(discordToken)
+        this.dBot = JDABuilder.createDefault(discordToken)
                 .enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES)
                 .build();
         getServer().getPluginManager().registerEvents(new PlayerJoinServerEvent(this), this);
@@ -41,8 +45,8 @@ public final class MinecraftDiscordBot extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerGameDeathEvent(this), this);
 // TODO: Fix with nms?        getServer().getPluginManager().registerEvents(new PlayerAchievementGetEvent(this), this);
         setBotStatus();
-        this.discordBot.addEventListener(new ReadyEvent(this));
-        this.discordBot.addEventListener(new MessageSendEvent(this));
+        this.dBot.addEventListener(new ReadyEvent(this));
+        this.dBot.addEventListener(new MessageSendEvent(this));
         EnumSet<Message.MentionType> deny = EnumSet.of(Message.MentionType.EVERYONE, Message.MentionType.HERE);
         MessageAction.setDefaultMentions(EnumSet.complementOf(deny)); // disables @everyone and @here messages from mc to discord
     }
@@ -59,54 +63,55 @@ public final class MinecraftDiscordBot extends JavaPlugin {
             em.setFooter(formatter.format(date));
             textChannel.sendMessage(em.build()).queue();
         }
-        discordBot.shutdown();
+        dBot.shutdown();
     }
 
     public void setBotStatus(){
-        discordBot.getPresence().setActivity(Activity.of(Activity.ActivityType.WATCHING, "Minecraft!"));
+        dBot.getPresence().setActivity(Activity.of(Activity.ActivityType.WATCHING, "Minecraft!"));
     }
 
     public TextChannel returnOrCreate(String name) {
-        List<TextChannel> matches = discordBot.getTextChannelsByName(name, true);
+        List<TextChannel> matches = dBot.getTextChannelsByName(name, true); // get discord channels by the name
         TextChannel channel;
-
         if (matches.size() == 0) {
-            List<Category> categories = discordBot.getCategoriesByName(getDiscordCategoryName(), true);
+            List<Category> cat = dBot.getCategoriesByName(getDiscordCategoryName(), true);
             Category category;
-
-            if (categories.size() == 0) {
-                if (discordServer == null) {
+            if (cat.size() == 0) {
+                if (dServer == null) {
                     return null;
                 }
-
-                category = discordServer.createCategory(getDiscordCategoryName()).complete();
+                category = dServer.createCategory(getDiscordCategoryName()).complete(); // create category if it doesn't exist
             } else {
-                category = categories.get(0);
+                category = cat.get(0);
             }
-
-            channel = category.createTextChannel(name).complete();
+            channel = category.createTextChannel(name).complete(); // create text channel if it doesn't exist
         } else {
             channel = matches.get(0);
         }
-
-        return channel;
+        return channel; // return the channel
     }
 
-
-    private String getConfig(String key, String dValue) {
+    private String getConfig(String key) {
         String name = getConfig().getString(key);
         if (name == null) {
-            return dValue;
+            getLogger().severe("Check the config.yml and check to make sure everything is filled out! Using the default minecraft name");
+            return "minecraft";
         } else {
             return name;
         }
     }
 
     public String getMinecraftDiscordChannelName() {
-        return getConfig("chat-channel-name", "minecraft");
+        return getConfig("chat-channel-name");
+    }
+
+    public String timestamp(){
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        Date date = new Date();
+        return formatter.format(date);
     }
 
     public String getDiscordCategoryName() {
-        return getConfig("category-name", "minecraft");
+        return getConfig("category-name");
     }
 }

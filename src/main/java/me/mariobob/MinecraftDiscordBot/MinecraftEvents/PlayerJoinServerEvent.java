@@ -9,8 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @RequiredArgsConstructor
 public class PlayerJoinServerEvent implements Listener {
@@ -18,14 +16,12 @@ public class PlayerJoinServerEvent implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        Date date = new Date();
         TextChannel textChannel = this.plugin.returnOrCreate(this.plugin.getMinecraftDiscordChannelName());
         if (textChannel != null) {
             EmbedBuilder em = new EmbedBuilder();
             em.setTitle(event.getPlayer().getDisplayName() + " has joined the server!");
             em.setColor(Color.GREEN);
-            em.setFooter("Joined at " + formatter.format(date), "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId());
+            em.setFooter("Joined at " + plugin.timestamp(), "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId());
             textChannel.sendMessage(em.build()).queue();
         }else{
             plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
