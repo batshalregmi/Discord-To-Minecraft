@@ -26,6 +26,8 @@ public class ReadyEvent extends ListenerAdapter {
             em.setColor(Color.GREEN);
             em.setFooter(formatter.format(date));
             textChannel.sendMessage(em.build()).queue();
+        }else{
+            plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
         }
     }
 }

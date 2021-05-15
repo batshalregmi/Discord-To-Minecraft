@@ -18,6 +18,8 @@ public class PlayerChatEvent implements Listener {
             TextChannel textChannel = this.plugin.returnOrCreate(this.plugin.getMinecraftDiscordChannelName());
             if (textChannel != null) {
                 textChannel.sendMessage(event.getPlayer().getDisplayName() + " » " + event.getMessage()).queue();
+            }else{
+                plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
             }
         }
     }

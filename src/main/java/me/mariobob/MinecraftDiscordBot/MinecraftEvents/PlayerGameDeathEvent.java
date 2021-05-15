@@ -29,6 +29,8 @@ public class PlayerGameDeathEvent implements Listener {
             em.setColor(Color.red);
             em.setFooter("Died at: " + formatter.format(date), "https://crafatar.com/avatars/" + Objects.requireNonNull(event.getEntity().getPlayer()).getUniqueId());
             textChannel.sendMessage(em.build()).queue();
+        } else{
+            plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
         }
 
     }

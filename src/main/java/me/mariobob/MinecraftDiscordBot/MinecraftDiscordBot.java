@@ -39,8 +39,8 @@ public final class MinecraftDiscordBot extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerLeaveServerEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerChatEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerGameDeathEvent(this), this);
-// TODO: FIX THIS        getServer().getPluginManager().registerEvents(new PlayerAchievementGet(this), this);
-        botStatus();
+// TODO: Fix with nms?        getServer().getPluginManager().registerEvents(new PlayerAchievementGetEvent(this), this);
+        setBotStatus();
         this.discordBot.addEventListener(new ReadyEvent(this));
         this.discordBot.addEventListener(new MessageSendEvent(this));
         EnumSet<Message.MentionType> deny = EnumSet.of(Message.MentionType.EVERYONE, Message.MentionType.HERE);
@@ -62,7 +62,7 @@ public final class MinecraftDiscordBot extends JavaPlugin {
         discordBot.shutdown();
     }
 
-    public void botStatus(){
+    public void setBotStatus(){
         discordBot.getPresence().setActivity(Activity.of(Activity.ActivityType.WATCHING, "Minecraft!"));
     }
 

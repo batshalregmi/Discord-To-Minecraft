@@ -16,7 +16,10 @@ public class PlayerAchievementGetEvent implements Listener {
     public void onPlayerAchievementGet(PlayerAdvancementDoneEvent event){
         TextChannel textChannel = this.plugin.returnOrCreate(this.plugin.getMinecraftDiscordChannelName());
         if (textChannel != null) {
-            textChannel.sendMessage(event.getPlayer().getDisplayName() + " has gotten the achievement: " + event.getAdvancement()).queue();
+            textChannel.sendMessage(event.getPlayer().getDisplayName() + " has gotten the achievement " + event.getAdvancement().getKey().toString()).queue(); // TODO: fix this with NMS code?? idk
+            textChannel.sendMessage("This advancement requires: " + event.getAdvancement().getCriteria()).queue();
+        }else{
+            plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
         }
 
     }
