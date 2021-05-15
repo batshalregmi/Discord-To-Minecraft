@@ -95,5 +95,6 @@
                 </executions>
             </plugin>
         </plugins>
+        <directory>${dir}</directory>
     </build>
 </project>
