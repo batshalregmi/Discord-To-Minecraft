@@ -22,3 +22,12 @@ jobs:
 
       - name: Build Project
         run: mvn -B package --file pom.xml
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Lastest Build"
+          files: |
+            LICENSE.txt
+            *.jar
