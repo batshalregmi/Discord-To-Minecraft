@@ -20,6 +20,10 @@
             <name>jcenter-bintray</name>
             <url>https://jcenter.bintray.com</url>
         </repository>
+            <repository>
+                <id>spigot-repo</id>
+                <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            </repository>
         <repository>
             <id>dv8tion</id>
             <name>m2-dv8tion</name>
