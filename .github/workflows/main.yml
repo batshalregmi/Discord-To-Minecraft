@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ master ]
 
-  workflow_dispatch:
+#  workflow_dispatch:
 
 jobs:
   build:
@@ -26,6 +26,11 @@ jobs:
         run: |
           cd target
           ls -a
+      - name: Upload artifacts
+        uses: actions/upload-artifact@2
+        with: 
+          name: Package
+          path: target/
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -33,5 +38,4 @@ jobs:
           prerelease: false
           title: "Lastest Build"
           files: |
-            MinecraftDiscordBot*.jar
-            *.jar
+            target/MinecraftDiscordBot-*.jar
