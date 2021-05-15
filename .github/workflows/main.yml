@@ -33,5 +33,5 @@ jobs:
           prerelease: false
           title: "Lastest Build"
           files: |
-            LICENSE.txt
+            MinecraftDiscordBot*.jar
             *.jar
