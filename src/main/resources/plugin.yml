@@ -1,0 +1,7 @@
+name: MinecraftDiscordBot
+version: ${project.version}
+main: me.mariobob.MinecraftDiscordBot.MinecraftDiscordBot
+api-version: 1.16
+load: STARTUP
+authors: [ Mariobob ]
+description: A bridge between minecraft and discord
