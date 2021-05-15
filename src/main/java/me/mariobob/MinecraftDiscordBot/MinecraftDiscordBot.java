@@ -71,24 +71,24 @@ public final class MinecraftDiscordBot extends JavaPlugin {
     }
 
     public TextChannel returnOrCreate(String name) {
-        List<TextChannel> matches = dBot.getTextChannelsByName(name, true); // get discord channels by the name
-        TextChannel channel;
-        if (matches.size() == 0) {
+        List<TextChannel> m = dBot.getTextChannelsByName(name, true); // get discord channels by the name
+        TextChannel ch;
+        if (m.size() == 0) {
             List<Category> cat = dBot.getCategoriesByName(getDiscordCategoryName(), true);
-            Category category;
+            Category c;
             if (cat.size() == 0) {
                 if (dServer == null) {
                     return null;
                 }
-                category = dServer.createCategory(getDiscordCategoryName()).complete(); // create category if it doesn't exist
+                c = dServer.createCategory(getDiscordCategoryName()).complete(); // create category if it doesn't exist
             } else {
-                category = cat.get(0);
+                c = cat.get(0);
             }
-            channel = category.createTextChannel(name).complete(); // create text channel if it doesn't exist
+            ch = c.createTextChannel(name).complete(); // create text channel if it doesn't exist
         } else {
-            channel = matches.get(0);
+            ch = m.get(0);
         }
-        return channel; // return the channel
+        return ch; // return the channel
     }
 
     private String getConfig(String key) {
