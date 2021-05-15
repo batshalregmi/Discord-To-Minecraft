@@ -66,6 +66,7 @@ public final class MinecraftDiscordBot extends JavaPlugin {
         discordBot.getPresence().setActivity(Activity.of(Activity.ActivityType.WATCHING, "Minecraft!"));
     }
 
+
     public TextChannel returnOrCreate(String name) {
         List<TextChannel> matches = discordBot.getTextChannelsByName(name, true);
         TextChannel channel;
