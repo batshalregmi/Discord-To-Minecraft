@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.mariobob.MinecraftDiscordBot.MinecraftDiscordBot;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -26,11 +27,13 @@ public class PlayerLeaveServerEvent implements Listener {
                 em.setDescription(event.getPlayer().getDisplayName() + " has been banned!" );
                 em.setFooter(plugin.timestamp(), "https://crafatar.com/avatars/" + Objects.requireNonNull(event.getPlayer()).getUniqueId());
                 textChannel.sendMessage(em.build()).queue();
+//                textChannel.getManager().setTopic(Bukkit.getOnlinePlayers().size() + " player(s) online!").queue();
             } else {
                 em.setTitle(event.getPlayer().getDisplayName() + " has left the server!");
                 em.setColor(Color.RED);
                 em.setFooter("Joined at " + plugin.timestamp(), "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId());
                 textChannel.sendMessage(em.build()).queue();
+//                textChannel.getManager().setTopic(Bukkit.getOnlinePlayers().size() + " player(s) online!").queue();
             }
         }else{
             plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");

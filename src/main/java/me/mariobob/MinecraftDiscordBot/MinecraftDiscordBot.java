@@ -69,7 +69,7 @@ public final class MinecraftDiscordBot extends JavaPlugin {
     }
 
     public void setBotStatus(){
-        dBot.getPresence().setActivity(Activity.of(Activity.ActivityType.WATCHING, "Minecraft!"));
+        dBot.getPresence().setActivity(Activity.of(Activity.ActivityType.WATCHING, getConfig("discord-bot-presence")));
     }
 
     public TextChannel returnOrCreate(String name) {

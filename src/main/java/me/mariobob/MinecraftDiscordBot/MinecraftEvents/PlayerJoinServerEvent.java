@@ -23,6 +23,7 @@ public class PlayerJoinServerEvent implements Listener {
             em.setColor(Color.GREEN);
             em.setFooter("Joined at " + plugin.timestamp(), "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId());
             textChannel.sendMessage(em.build()).queue();
+//            textChannel.getManager().setTopic(Bukkit.getOnlinePlayers().size() + " player(s) online!").queue();
         }else{
             plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
         }
