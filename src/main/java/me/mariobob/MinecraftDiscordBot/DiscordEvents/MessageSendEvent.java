@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 public class MessageSendEvent extends ListenerAdapter {
     private final MinecraftDiscordBot plugin;
 
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         TextChannel textChannel = plugin.returnOrCreate(plugin.getMinecraftDiscordChannelName());
