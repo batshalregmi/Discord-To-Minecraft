@@ -18,7 +18,7 @@ public class MessageSendEvent extends ListenerAdapter {
             if (!event.getAuthor().isBot()) {
                 plugin.getServer().broadcastMessage(event.getAuthor().getName() + " » " + event.getMessage().getContentRaw());
             }
-        }else{
+        } else {
             plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
         }
     }

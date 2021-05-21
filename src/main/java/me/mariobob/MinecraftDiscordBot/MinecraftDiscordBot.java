@@ -27,7 +27,8 @@ public final class MinecraftDiscordBot extends JavaPlugin {
     @Getter
     public JDA dBot;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     public Guild dServer;
 
 
@@ -61,7 +62,7 @@ public final class MinecraftDiscordBot extends JavaPlugin {
     @Override
     public void onDisable() {
         TextChannel textChannel = returnOrCreate(getMinecraftDiscordChannelName());
-        if(textChannel != null){
+        if (textChannel != null) {
             SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
             Date date = new Date();
             EmbedBuilder em = new EmbedBuilder();
@@ -73,7 +74,7 @@ public final class MinecraftDiscordBot extends JavaPlugin {
         dBot.shutdown();
     }
 
-    public void setBotStatus(){
+    public void setBotStatus() {
         dBot.getPresence().setActivity(Activity.of(Activity.ActivityType.WATCHING, getConfig("discord-bot-presence")));
     }
 
@@ -112,7 +113,7 @@ public final class MinecraftDiscordBot extends JavaPlugin {
         return getConfig("chat-channel-name");
     }
 
-    public String timestamp(){
+    public String timestamp() {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         Date date = new Date();
         return formatter.format(date);

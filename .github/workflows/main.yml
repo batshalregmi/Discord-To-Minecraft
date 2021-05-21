@@ -1,4 +1,3 @@
-
 name: Build Project
 on:
   push:
@@ -26,7 +25,7 @@ jobs:
           ls -a
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
-        with: 
+        with:
           name: Package
           path: target/
       - uses: "marvinpinto/action-automatic-releases@latest"
