@@ -30,6 +30,11 @@ public final class MinecraftDiscordBot extends JavaPlugin {
     @Getter @Setter
     public Guild dServer;
 
+
+    public static MinecraftDiscordBot getPlugin() {
+        return JavaPlugin.getPlugin(MinecraftDiscordBot.class);
+    }
+
     @SneakyThrows
     @Override
     public void onEnable() {
