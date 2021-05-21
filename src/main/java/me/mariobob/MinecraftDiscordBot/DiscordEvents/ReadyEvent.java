@@ -18,7 +18,7 @@ public class ReadyEvent extends ListenerAdapter {
     public void onReady(@NotNull net.dv8tion.jda.api.events.ReadyEvent event) {
         TextChannel textChannel = plugin.returnOrCreate(plugin.getMinecraftDiscordChannelName());
         if (textChannel != null) {
-            textChannel.sendMessage(Util.createEmbed(null, "Server is Online! :white_check_mark:", Color.GREEN, MinecraftDiscordBot.getPlugin().timestamp(), null, (Image) Bukkit.getServer().getServerIcon())).queue();
+            textChannel.sendMessage(Util.createEmbed(null, "Server is Online! :white_check_mark:", Color.GREEN, MinecraftDiscordBot.getPlugin().timestamp(), null)).queue();
         } else {
             plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
         }
