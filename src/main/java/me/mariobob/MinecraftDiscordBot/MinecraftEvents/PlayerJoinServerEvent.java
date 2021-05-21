@@ -20,12 +20,12 @@ public class PlayerJoinServerEvent implements Listener {
         TextChannel textChannel = this.plugin.returnOrCreate(this.plugin.getMinecraftDiscordChannelName());
         if (textChannel != null) {
             EmbedBuilder em = new EmbedBuilder();
-            em.setTitle(event.getPlayer().getDisplayName() + " has joined the server!");
-            em.setColor(Color.GREEN);
-            em.setFooter("Joined at " + plugin.timestamp(), "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId());
-            textChannel.sendMessage(em.build()).queue();
+//            em.setTitle(event.getPlayer().getDisplayName() + " has joined the server!");
+//            em.setColor(Color.GREEN);
+//           em.setFooter("Joined at " + plugin.timestamp(), "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId());
+//            textChannel.sendMessage(em.build()).queue();
 
-            textChannel.sendMessage(Util.EmbedBuilder(event.getPlayer().getDisplayName() + " has joined the server!", "Server is Online! :white_check_mark:", Color.GREEN, MinecraftDiscordBot.getPlugin().timestamp())).queue();
+            textChannel.sendMessage(Util.createEmbed(event.getPlayer().getDisplayName() + " has joined the server!", null, Color.GREEN, "Joined at " + plugin.timestamp(), null)).queue();
 
 
 //            textChannel.getManager().setTopic(Bukkit.getOnlinePlayers().size() + " player(s) online!").queue();

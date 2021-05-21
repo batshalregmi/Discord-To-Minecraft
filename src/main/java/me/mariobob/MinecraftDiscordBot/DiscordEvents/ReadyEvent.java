@@ -3,7 +3,6 @@ package me.mariobob.MinecraftDiscordBot.DiscordEvents;
 import lombok.RequiredArgsConstructor;
 import me.mariobob.MinecraftDiscordBot.MinecraftDiscordBot;
 import me.mariobob.MinecraftDiscordBot.Util.Util;
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +22,7 @@ public class ReadyEvent extends ListenerAdapter {
 //            em.setColor(Color.GREEN);
 //            em.setFooter(plugin.timestamp());
 //            textChannel.sendMessage(em.build()).queue();
-            textChannel.sendMessage(Util.EmbedBuilder(null, "Server is Online! :white_check_mark:", Color.GREEN, MinecraftDiscordBot.getPlugin().timestamp())).queue();
+            textChannel.sendMessage(Util.createEmbed(null, "Server is Online! :white_check_mark:", Color.GREEN, MinecraftDiscordBot.getPlugin().timestamp(), null)).queue();
         }else{
             plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
         }
