@@ -19,9 +19,9 @@ public class PlayerLeaveServerEvent implements Listener {
         TextChannel textChannel = this.plugin.returnOrCreate(this.plugin.getMinecraftDiscordChannelName());
         if (textChannel != null) {
             if (event.getPlayer().isBanned()) {
-                textChannel.sendMessage(Util.createEmbed("The Ban Hammer Has Spoken!", event.getPlayer().getDisplayName() + " has been banned!", Color.RED, MinecraftDiscordBot.getPlugin().timestamp(), null, null)).queue();
+                textChannel.sendMessage(Util.createEmbed("The Ban Hammer Has Spoken!", event.getPlayer().getDisplayName() + " has been banned!", Color.RED, MinecraftDiscordBot.getPlugin().timestamp(), null)).queue();
             } else {
-                textChannel.sendMessage(Util.createEmbed(event.getPlayer().getDisplayName() + " has left the server!", null, Color.RED, MinecraftDiscordBot.getPlugin().timestamp(), null, null)).queue();
+                textChannel.sendMessage(Util.createEmbed(event.getPlayer().getDisplayName() + " has left the server!", null, Color.RED, MinecraftDiscordBot.getPlugin().timestamp(), null)).queue();
             }
         } else {
             plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");

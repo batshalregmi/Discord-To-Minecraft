@@ -18,7 +18,7 @@ public class PlayerJoinServerEvent implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         TextChannel textChannel = this.plugin.returnOrCreate(this.plugin.getMinecraftDiscordChannelName());
         if (textChannel != null) {
-            textChannel.sendMessage(Util.createEmbed(event.getPlayer().getDisplayName() + " has joined the server!", null, Color.GREEN, "Joined at " + plugin.timestamp(), null, null)).queue();
+            textChannel.sendMessage(Util.createEmbed(event.getPlayer().getDisplayName() + " has joined the server!", null, Color.GREEN, "Joined at " + plugin.timestamp(), null)).queue();
         } else {
             plugin.getServer().getLogger().severe("Minecraft channel not found!! Make sure it exists and is in the config.yml file.");
         }
