@@ -1,5 +1,4 @@
 package me.mariobob.MinecraftDiscordBot.MinecraftEvents;
-
 import lombok.RequiredArgsConstructor;
 import me.mariobob.MinecraftDiscordBot.MinecraftDiscordBot;
 import net.dv8tion.jda.api.entities.TextChannel;

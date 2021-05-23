@@ -5,7 +5,6 @@ import me.mariobob.MinecraftDiscordBot.MinecraftDiscordBot;
 import me.mariobob.MinecraftDiscordBot.Util.Util;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;

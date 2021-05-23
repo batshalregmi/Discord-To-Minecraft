@@ -1,7 +1,6 @@
 package me.mariobob.MinecraftDiscordBot.Util;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import org.bukkit.util.CachedServerIcon;
 
 import java.awt.*;
 

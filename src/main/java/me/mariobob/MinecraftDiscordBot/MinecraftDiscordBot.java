@@ -15,6 +15,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.awt.*;
@@ -23,7 +24,7 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 
-public final class MinecraftDiscordBot extends JavaPlugin {
+public final class MinecraftDiscordBot extends JavaPlugin implements Listener {
     @Getter
     public JDA dBot;
 
@@ -49,6 +50,7 @@ public final class MinecraftDiscordBot extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerLeaveServerEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerChatEvent(this), this);
         getServer().getPluginManager().registerEvents(new PlayerGameDeathEvent(this), this);
+        getServer().getPluginManager().registerEvents(this, this);
 // TODO: Fix with nms?        getServer().getPluginManager().registerEvents(new PlayerAchievementGetEvent(this), this);
         getLogger().info("Initializing Discord Bot");
         setBotStatus();
