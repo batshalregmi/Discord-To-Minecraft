@@ -44,6 +44,7 @@ public final class MinecraftDiscordBot extends JavaPlugin implements Listener {
         String discordToken = getConfig().getString("DISCORD_TOKEN");
         this.dBot = JDABuilder.createDefault(discordToken)
                 .enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES)
+                .setAutoReconnect(true)
                 .build();
         getLogger().info("Initializing Minecraft events");
         getServer().getPluginManager().registerEvents(new PlayerJoinServerEvent(this), this);
@@ -56,8 +57,8 @@ public final class MinecraftDiscordBot extends JavaPlugin implements Listener {
         setBotStatus();
         this.dBot.addEventListener(new ReadyEvent(this));
         this.dBot.addEventListener(new MessageSendEvent(this));
-        EnumSet<Message.MentionType> deny = EnumSet.of(Message.MentionType.EVERYONE, Message.MentionType.HERE);
-        MessageAction.setDefaultMentions(EnumSet.complementOf(deny)); // disables @everyone and @here messages from mc to discord
+        EnumSet<Message.MentionType> deny = EnumSet.of(Message.MentionType.EVERYONE, Message.MentionType.HERE, Message.MentionType.ROLE, Message.MentionType.USER, Message.MentionType.EMOTE, Message.MentionType.CHANNEL);
+        MessageAction.setDefaultMentions(EnumSet.complementOf(deny)); // disables mentions from mc to discord
         getLogger().info("Plugin is fully loaded");
     }
 
