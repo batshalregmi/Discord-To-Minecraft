@@ -1,7 +1,5 @@
 package me.mariobob.MinecraftDiscordBot;
 
-import lombok.Getter;
-import lombok.Setter;
 import lombok.SneakyThrows;
 import me.mariobob.MinecraftDiscordBot.DiscordEvents.MessageSendEvent;
 import me.mariobob.MinecraftDiscordBot.DiscordEvents.ReadyEvent;
@@ -25,11 +23,8 @@ import java.util.EnumSet;
 import java.util.List;
 
 public final class MinecraftDiscordBot extends JavaPlugin implements Listener {
-    @Getter
     public JDA dBot;
 
-    @Getter
-    @Setter
     public Guild dServer;
 
 
@@ -124,5 +119,17 @@ public final class MinecraftDiscordBot extends JavaPlugin implements Listener {
 
     public String getDiscordCategoryName() {
         return getConfig("category-name");
+    }
+
+    public JDA getDBot() {
+        return this.dBot;
+    }
+
+    public Guild getDServer() {
+        return this.dServer;
+    }
+
+    public void setDServer(Guild dServer) {
+        this.dServer = dServer;
     }
 }
